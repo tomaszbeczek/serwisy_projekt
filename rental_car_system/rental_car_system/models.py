@@ -28,6 +28,16 @@ class Car_Dealer(models.Model):
         return str(self.name)
 
 
+class Customer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    phone = models.CharField(validators=[MinLengthValidator(10), MaxLengthValidator(10)], max_length=10)
+    location = models.OneToOneField(Location, on_delete=models.CASCADE)
+    type = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Location(models.Model):
     city = models.CharField(max_length=50)
 
