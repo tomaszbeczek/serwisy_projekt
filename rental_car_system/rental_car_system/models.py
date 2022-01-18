@@ -43,3 +43,12 @@ class Location(models.Model):
 
     def __str__(self):
         return self.city
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    car_dealer = models.ForeignKey(Car_Dealer, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    rent = models.CharField(max_length=10)
+    days = models.CharField(max_length=3)
+    is_complete = models.BooleanField(default=False)
+
